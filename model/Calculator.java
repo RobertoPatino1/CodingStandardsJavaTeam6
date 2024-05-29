@@ -4,27 +4,21 @@ import java.util.Map;
 
 public class Calculator {
     double baseCost = 5;
-    double calcularCostoTotalConDescuento(Order order, Menu menu) {
-        double totalCost = baseCost;
+    public double calculateTotalPaymentWithDiscount(Order order, Menu menu) {
+        double totalPayment = baseCost;
         int totalQuantity = order.getTotalItems();
-
-
+        double discount = 0;
         for (Map.Entry<String, Integer> item : order.getOrderedItems().entrySet()) {
-            totalCost += menu.getPrice(item.getKey()) * item.getValue();
+            totalPayment += menu.getPrice(item.getKey()) * item.getValue();
         }
 
-
-        double discount = 0;
         if (totalQuantity > 5) {
             discount = 0.1;
         } else if (totalQuantity > 10) {
             discount = 0.2;
         }
+        totalPayment = totalPayment - (totalPayment * discount);
 
-
-        totalCost = totalCost - (totalCost * discount);
-
-
-        return totalCost;
+        return totalPayment;
     }
 }

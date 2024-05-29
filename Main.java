@@ -1,3 +1,4 @@
+import java.util.Map;
 import java.util.Scanner;
 
 import model.Calculator;
@@ -24,7 +25,7 @@ public class Main {
 
             System.out.print("Enter quantity for " + input + ": ");
             int quantity = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             if (quantity <= 0) {
                 System.out.println("Invalid quantity. Please re-enter.");
@@ -34,29 +35,29 @@ public class Main {
             order.add(input, quantity);
         }
 
-        double totalC_ = calculator.calc(order, menu);
-        int var2 = order.getvar2();
+        double totalCost = calculator.calculateTotalPaymentWithDiscount(order, menu);
+        int totalAmountOfItems = order.getTotalItems();
 
-        if (var2 > 100) {
+        if (totalAmountOfItems > 100) {
             System.out.println("Order quantity exceeds maximum limit. Please re-enter.");
             return;
         }
 
-        System.out.println("Your Ord:");
-        for (Map.Entry<String, Integer> item : order.getvar45s().entrySet()) {
+        System.out.println("Your Order:");
+        for (Map.Entry<String, Integer> item : order.getOrderedItems().entrySet()) {
             System.out.println(item.getKey() + ": " + item.getValue());
         }
 
-        System.out.println("Total Cost: $" + totalC_);
+        System.out.println("Total Cost: $" + totalCost);
         System.out.print("Confirm order (yes/no): ");
-        String confirm = scanner.nextLine();
+        String confirmation = scanner.nextLine();
 
-        if (!confirm.equals("yes") or !confirm.equals("YES")) {
+        if (!confirmation.equalsIgnoreCase("yes")) {
             System.out.println("Order canceled.");
-            System.out.println(-1);
             return;
         }
 
-        System.out.println("Order confirmed. Total cost is: $" + totalC_);
+        System.out.println("Order confirmed. Total cost is: $" + totalCost);
+        scanner.close();
     }
 }
