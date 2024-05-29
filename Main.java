@@ -1,25 +1,28 @@
+import java.util.Scanner;
+
+import model.Calculator;
+import model.Menu;
+import model.Order;
+
 public class Main {
     public static void main(String[] args) {
-        menu menu = new menu();
-        Ord order = new Ord();
-        sumThe_Total calculator = new sumThe_Total();
+        Menu menu = new Menu();
+        Order order = new Order();
+        Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            menu.show();
-
+            menu.showMenu();
             System.out.print("Enter meal name to order or 'done' to finish: ");
-            String var45 = scanner.nextLine();
-            //System.out.println("here i am in main method");
-            //this will allow the user to exit the loop
-            if (var45.equals("done")) break;
+            String input = scanner.nextLine();
+            if (input.equals("done")) break;
 
-            if (!menu.aval(var45)) {
+            if (!menu.validateSelection(input)) {
                 System.out.println("meal not available. Please re-select.");
                 continue;
             }
 
-            System.out.print("Enter quantity for " + var45 + ": ");
+            System.out.print("Enter quantity for " + input + ": ");
             int quantity = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
@@ -28,7 +31,7 @@ public class Main {
                 continue;
             }
 
-            order.add(var45, quantity);
+            order.add(input, quantity);
         }
 
         double totalC_ = calculator.calc(order, menu);
