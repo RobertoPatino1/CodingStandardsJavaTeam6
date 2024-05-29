@@ -1,23 +1,27 @@
+package model;
+
+import java.util.HashMap;
+import java.util.Map;
+
 class Order {
-    Map<String, Integer> var45s;
+    Map<String, Integer> orderedItems;
 
     Order() {
         //this will create a new order
-        var45s = new HashMap<>();
+        orderedItems = new HashMap<>();
     }
 
-    void add(String var45, int quantity) {
-        //this will add the meal and quantity to the order
-        var45s.put(var45, quantity);
+    void add(String meal, int quantity) {
+        orderedItems.put(meal, quantity);
     }
 
-    HashMap<String, Integer> getvar45s() {
-        return var45s;
+    Map<String, Integer> getOrderedItems() {
+        return orderedItems;
     }
 
-    int getvar2() {
+    int getTotalItems() {
         int total = 0;
-        for (int quantity : var45s.values()) {
+        for (int quantity : orderedItems.values()) {
             total += quantity;
         }
         return total;
