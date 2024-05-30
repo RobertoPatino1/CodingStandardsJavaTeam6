@@ -3,22 +3,27 @@ import java.util.Map;
 
 
 public class Calculator {
-    double baseCost = 5;
+    private static final  double BASE_COST = 5;
+
     public double calculateTotalPaymentWithDiscount(Order order, Menu menu) {
-        double totalPayment = baseCost;
+        double totalPayment = BASE_COST;
         int totalQuantity = order.getTotalItems();
-        double discount = 0;
         for (Map.Entry<String, Integer> item : order.getOrderedItems().entrySet()) {
             totalPayment += menu.getPrice(item.getKey()) * item.getValue();
         }
 
+        double discount = assignDiscount(totalQuantity);
+        totalPayment = totalPayment - (totalPayment * discount);
+        return totalPayment;
+    }
+
+    private double assignDiscount(int totalQuantity){
+        double discount = 0;
         if (totalQuantity > 5) {
             discount = 0.1;
         } else if (totalQuantity > 10) {
             discount = 0.2;
         }
-        totalPayment = totalPayment - (totalPayment * discount);
-
-        return totalPayment;
+        return discount;
     }
 }

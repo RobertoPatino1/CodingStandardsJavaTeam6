@@ -1,4 +1,3 @@
-import java.util.Map;
 import java.util.Scanner;
 import model.Calculator;
 import model.Menu;

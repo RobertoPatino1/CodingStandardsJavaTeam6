@@ -22,7 +22,7 @@ public class Menu {
     }
 
     public boolean validateSelection(String selectedProduct) {
-        return selectedProduct.equals("Burger") || selectedProduct.equals("Pizza") || selectedProduct.equals("Salad") || selectedProduct.equals("Pasta");
+        return selectedProduct.equalsIgnoreCase("Burger") || selectedProduct.equalsIgnoreCase("Pizza") || selectedProduct.equalsIgnoreCase("Salad") || selectedProduct.equalsIgnoreCase("Pasta");
     }
 
     public double getPrice(String selectedProduct) {
