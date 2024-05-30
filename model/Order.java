@@ -11,7 +11,7 @@ public class Order {
         orderedItems = new HashMap<>();
     }
 
-    public void add(String meal, int quantity) {
+    public void addMeal(String meal, int quantity) {
         orderedItems.put(meal, quantity);
     }
 
@@ -27,43 +27,23 @@ public class Order {
         return total;
     }
 
-    public static String getOrderInput(Scanner scanner) {
-        System.out.print("Enter meal name to order or 'done' to finish: ");
-        return scanner.nextLine();
-    }
-
-
-    public static boolean isValidOrder(Menu menu, String input) {
-        return menu.validateSelection(input);
-    }
-
-
-    public static int getOrderQuantity(Scanner scanner) {
-        System.out.print("Enter quantity for the meal: ");
-        return scanner.nextInt();
-    }
-
-
-    public static void displayOrderSummary(Order order, double totalCost) {
+    public void printOrder(){
         System.out.println("Your Order:");
-        for (Map.Entry<String, Integer> item : order.getOrderedItems().entrySet()) {
+        for (Map.Entry<String, Integer> item : this.getOrderedItems().entrySet()) {
             System.out.println(item.getKey() + ": " + item.getValue());
         }
-        System.out.println("Total Cost: $" + totalCost);
     }
 
-    public static int confirmOrder(Scanner input, double totalCost) {
-        System.out.print("Confirm order (yes/no): ");
-        String confirmation = input.nextLine();
-
-
-        if (!confirmation.equalsIgnoreCase("yes")) {
-            System.out.println("Order canceled.");
+    public static int getValidQuantity(Scanner scanner, String mealName) {
+        System.out.print("Enter quantity for " + mealName + ": ");
+        int quantity = scanner.nextInt();
+        scanner.nextLine();
+    
+        if (quantity <= 0 || quantity > 100) {
+            System.out.println("Invalid quantity. Please re-enter.");
             return -1;
         }
-
-
-        System.out.println("Order confirmed. Total cost is: $" + totalCost);
-        return 1;
+    
+        return quantity;
     }
 }

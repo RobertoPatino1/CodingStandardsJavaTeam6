@@ -2,9 +2,8 @@ package model;
 
 import java.util.HashMap;
 import java.util.Map;
-
 public class Menu {
-    private Map<String, Double> products;
+    Map<String, Double> products;
 
     public Menu() {
         products = new HashMap<>();
@@ -17,15 +16,21 @@ public class Menu {
     public void showMenu() {
         System.out.println("menu:");
         for (Map.Entry<String, Double> item : products.entrySet()) {
-            System.out.println(item.getKey() + ": $" + item.getValue());
+            String productName = item.getKey();
+            double productPrice = item.getValue();
+            printMenuLines(productName,productPrice);
         }
     }
 
     public boolean validateSelection(String selectedProduct) {
-        return selectedProduct.equalsIgnoreCase("Burger") || selectedProduct.equalsIgnoreCase("Pizza") || selectedProduct.equalsIgnoreCase("Salad") || selectedProduct.equalsIgnoreCase("Pasta");
+        return selectedProduct.equals("Burger") || selectedProduct.equals("Pizza") || selectedProduct.equals("Salad") || selectedProduct.equals("Pasta");
     }
 
     public double getPrice(String selectedProduct) {
         return products.get(selectedProduct);
+    }
+
+    private void printMenuLines(String productName, double productPrice){
+        System.out.println(productName+": $"+productPrice);
     }
 }
