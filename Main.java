@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-import model.Calculator;
+import model.CostCalculator;
 import model.Menu;
 import model.Order;
 
@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         Menu menu = new Menu();
         Order order = new Order();
-        Calculator calculator = new Calculator();
+        CostCalculator costCalculator = new CostCalculator();
         Scanner scanner = new Scanner(System.in);
 
         Order.processOrder(menu, order, scanner);
@@ -20,7 +20,7 @@ public class Main {
         }
 
         order.printOrder();
-        double totalCost = calculator.calculateTotalPaymentWithDiscount(order, menu);
+        double totalCost = costCalculator.calculateTotalPaymentWithDiscount(order, menu);
 
         if (!Order.confirmOrder(scanner, totalCost)) {
             System.out.println("Order canceled.");

@@ -1,7 +1,7 @@
 package model;
 import java.util.Map;
 
-public class Calculator {
+public class CostCalculator {
     private static final double BASE_COST = 5;
 
     public double calculateTotalPaymentWithDiscount(Order order, Menu menu) {
@@ -10,15 +10,10 @@ public class Calculator {
         for (Map.Entry<String, Integer> item : order.getOrderedItems().entrySet()) {
             totalPayment += menu.getPrice(item.getKey()) * item.getValue();
         }
-
         double discount = assignDiscount(totalQuantity);
         totalPayment = totalPayment - (totalPayment * discount);
 
-        if (totalPayment > 100) {
-            totalPayment -= 25;
-        } else if (totalPayment > 50) {
-            totalPayment -= 10;
-        }
+        totalPayment = specialOfferDiscount(totalPayment);
 
         return totalPayment;
     }
@@ -31,5 +26,14 @@ public class Calculator {
             discount = 0.1;
         }
         return discount;
+    }
+
+    private double specialOfferDiscount(double totalPayment){
+        if (totalPayment > 100) {
+            totalPayment -= 25;
+        } else if (totalPayment > 50) {
+            totalPayment -= 10;
+        }
+        return totalPayment;
     }
 }
