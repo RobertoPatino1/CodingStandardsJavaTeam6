@@ -46,4 +46,28 @@ public class Order {
     
         return quantity;
     }
+
+    public static boolean confirmOrder(Scanner scanner, double totalCost) {
+        System.out.println("Total Cost: $" + totalCost);
+        System.out.print("Confirm order (yes/no): ");
+        String confirmation = scanner.nextLine();
+        return confirmation.equalsIgnoreCase("yes");
+    }
+
+    public static void processOrder(Menu menu, Order order, Scanner scanner) {
+        String userInput = "";
+        while (!"done".equals(userInput)) {
+            menu.showMenu();
+            System.out.print("Enter meal name to order or 'done' to finish: ");
+            userInput = scanner.nextLine();
+            if (!menu.validateSelection(userInput)) {
+                System.out.println("Meal not available. Please re-select.");
+                continue;
+            }
+            int quantity = Order.getValidQuantity(scanner, userInput);
+            if (quantity == -1) continue;
+        
+            order.addMeal(userInput, quantity);
+        }
+    }
 }
