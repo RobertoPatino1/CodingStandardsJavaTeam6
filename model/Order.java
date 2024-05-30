@@ -5,13 +5,13 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Order {
-    Map<String, Integer> orderedItems;
+    private Map<String, Integer> orderedItems;
 
     public Order() {
         orderedItems = new HashMap<>();
     }
 
-    public void add(String meal, int quantity) {
+    public void addMeal(String meal, int quantity) {
         orderedItems.put(meal, quantity);
     }
 
@@ -32,10 +32,6 @@ public class Order {
         return scanner.nextLine();
     }
 
-
-    public static boolean isValidOrder(Menu menu, String input) {
-        return menu.validateSelection(input);
-    }
 
 
     public static int getOrderQuantity(Scanner scanner) {

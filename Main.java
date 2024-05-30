@@ -26,7 +26,8 @@ public class Main {
             if (input.equals("done")) break;
 
 
-            if (!Order.isValidOrder(menu, input)) {
+            if (!menu.validateSelection(input)) {
+                System.out.println("---THE INPUT IS:"+input);
                 System.out.println("Meal not available. Please re-select.");
                 continue;
             }
@@ -39,7 +40,7 @@ public class Main {
             }
 
 
-            order.add(input, quantity);
+            order.addMeal(input, quantity);
         }
 
 
