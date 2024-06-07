@@ -20,7 +20,7 @@ public class Main {
         }
 
         order.printOrder();
-        double totalCost = costCalculator.calculateTotalPaymentWithDiscount(order, menu);
+        double totalCost = costCalculator.calculateTotalPayment(order, menu);
 
         if (!Order.confirmOrder(scanner, totalCost)) {
             System.out.println("Order canceled.");

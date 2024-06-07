@@ -4,7 +4,7 @@ import java.util.Map;
 public class CostCalculator {
     private static final double BASE_COST = 5;
 
-    public double calculateTotalPaymentWithDiscount(Order order, Menu menu) {
+    public double calculateTotalPayment(Order order, Menu menu) {
         double totalPayment = BASE_COST;
         int totalQuantity = order.getTotalItems();
         for (Map.Entry<String, Integer> item : order.getOrderedItems().entrySet()) {

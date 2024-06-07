@@ -23,7 +23,11 @@ public class Menu {
     }
 
     public boolean validateSelection(String selectedProduct) {
-        return selectedProduct.equals("Burger") || selectedProduct.equals("Pizza") || selectedProduct.equals("Salad") || selectedProduct.equals("Pasta");
+        boolean burgerValidation = selectedProduct.equals("Burger");
+        boolean pizzaValidation =  selectedProduct.equals("Pizza");
+        boolean saladValidation = selectedProduct.equals("Salad");
+        boolean pastaValidation = selectedProduct.equals("Pasta");
+        return burgerValidation || pizzaValidation || saladValidation || pastaValidation;
     }
 
     public double getPrice(String selectedProduct) {

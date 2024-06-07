@@ -56,6 +56,7 @@ public class Order {
 
     public static void processOrder(Menu menu, Order order, Scanner scanner) {
         String userInput = "";
+        
         while (!"done".equals(userInput)) {
             menu.showMenu();
             System.out.print("Enter meal name to order or 'done' to finish: ");
@@ -64,6 +65,7 @@ public class Order {
                 System.out.println("Meal not available. Please re-select.");
                 continue;
             }
+            if(userInput.length()>=15){throw new RuntimeException("Input Length not allowed");} 
             int quantity = Order.getValidQuantity(scanner, userInput);
             if (quantity == -1) continue;
         
